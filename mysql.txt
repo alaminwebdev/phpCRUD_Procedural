@@ -1,0 +1,55 @@
+MySQL CRUD Example : 
+
+CREATE TABLE employee(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(10) NOT NULL,
+    age INT NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    salary INT NOT NULL,
+    department INT NOT NULL,
+    city INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+INSERT INTO employee (name,age,phone,salary,department,city)
+VALUES
+("Alamin",24,"01718695350",12000,2,1),
+("Meera",22,"01713456783",12000,2,2);
+
+
+CREATE TABLE city(
+    cid INT NOT NULL AUTO_INCREMENT,
+    cityname VARCHAR(10) NOT NULL,
+    PRIMARY KEY(cid)
+);
+
+
+INSERT INTO city (cityname)
+VALUES
+("Dhaka"),
+("Sylhet");
+
+CREATE TABLE department(
+    dmid INT NOT NULL AUTO_INCREMENT,
+    dep_name VARCHAR(10) NOT NULL,
+    PRIMARY KEY(dmid)
+);
+
+INSERT INTO department (dep_name)
+VALUES
+("BBA"),
+("CSE"),
+("BITHM"),
+("MBA");
+
+ALTER TABLE employee 
+ADD FOREIGN KEY (department) REFERENCES department(dmid),
+ADD FOREIGN KEY (city) REFERENCES city(cid);
+
+Query:
+
+SELECT e.id , e.name, e.age, e.phone, e.salary , d.dep_name, c.cityname FROM employee e 
+INNER JOIN department d
+ON e.department= d.dmid
+INNER JOIN city c
+ON e.city = c.cid;
