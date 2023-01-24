@@ -26,7 +26,4 @@ if(mysqli_affected_rows($conn)){
 
 
 
-//echo "Delete page of this ". $employeeID. " ID ";
-
-
 ?>
